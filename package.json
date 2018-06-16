@@ -4,7 +4,6 @@
   "description": "cli-template",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config build/webpack.base.config.js",
     "server": "node build/server.js"
   },
   "repository": {
