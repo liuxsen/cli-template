@@ -1,8 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './app.jsx';
+import { Provider } from 'react-redux';
 
-render(<App />, document.getElementById('app'));
+import App from './containers/app.jsx';
+import store from './store';
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);
 
 if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept();

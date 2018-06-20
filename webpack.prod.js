@@ -7,6 +7,8 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // 打开新的web tab
 const OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin');
+//
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const resolve = dir => path.resolve(__dirname, dir);
 const OUTPUTPATH = resolve('dist');
@@ -31,7 +33,8 @@ module.exports = {
       template: 'index.html'
     }),
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new webpack.HashedModuleIdsPlugin() //用 HashedModuleIdsPlugin 可以轻松地实现 chunkhash 的稳定化
   ],
   module: {
     rules: [

@@ -1,8 +1,9 @@
 const path = require('path');
+const chalk = require('chalk');
 const Express = require('express');
 const config = require('../config/config');
 const app = new Express();
-
+const ConnectHistoryApiFallBack = require('connect-history-api-fallback');
 // http 代理
 const HttpProxy = require('http-proxy');
 
@@ -19,9 +20,10 @@ let proxyOptions = {
   target: targetUrl
 };
 let proxy = HttpProxy.createProxyServer(proxyOptions);
+app.use('/', ConnectHistoryApiFallBack());
+// http 代理配置
 app.use('/api', (req, res) => {
   proxy.web(req, res, { target: targetUrl });
-  console.log(`proxy from '/api' to ${targetUrl}`);
 });
 
 if (process.env.NODE_ENV !== 'production') {
@@ -43,7 +45,12 @@ app.listen(port, host, err => {
   if (err) {
     console.log(err);
   } else {
-    console.log(`==> open http://${host}:${port} in a brower to view the app`);
+    console.log(
+      chalk.green(`==> open http://${host}:${port} in a brower to view the app`)
+    );
+    console.log('\n');
+    console.log(chalk.green(`proxy from '/api' to ${targetUrl}`));
+    console.log('\n');
   }
 });
 
