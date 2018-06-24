@@ -43,8 +43,16 @@ module.exports = {
       url: `http://${config.host}:${config.port}`
     })
   ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   module: {
     rules: [
+      {
+        test: /\.ts|\.tsx$/,
+        exclude: /node_modules/,
+        use: ['awesome-typescript-loader']
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
