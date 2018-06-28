@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   mode: 'development',
-  entry: './src/main.js',
+  entry: './src/main',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -31,7 +31,7 @@ const config = {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
-        test: /\.ts?x$/,
+        test: /\.tsx?$/,
         use: ['awesome-typescript-loader']
       }
     ]
