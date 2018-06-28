@@ -1,5 +1,5 @@
 import { ADD_TODO, TOGGLE_TODO } from '../actionTypes/todo.types';
-import { todos } from '../state/todos';
+import { todoState } from '../state/todos';
 
 interface actionType {
   type: string;
@@ -9,7 +9,7 @@ interface actionType {
     completed: false;
   };
 }
-export const TodoReducer = function(state = todos, action: actionType) {
+export const TodoReducer = function(state = todoState, action: actionType) {
   switch (action.type) {
     case ADD_TODO:
       return {

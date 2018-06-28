@@ -9,6 +9,7 @@ import {
 import Login from '../containers/Login/index';
 
 import Home from '../containers/Home/index';
+import Todos from '../containers/Todos/index';
 
 export interface Props {
   history: any;
@@ -20,6 +21,7 @@ const RouterConfig = ({ history }: Props) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
+        <Route path="/todos" component={Todos} />
       </Switch>
     </Router>
   );
