@@ -3,11 +3,11 @@
  * @Author: jianhui@yzyw-inc.com
  * @Date: 2018-06-28 14:14:30
  * @Last Modified by: jianhui
- * @Last Modified time: 2018-06-28 15:58:24
+ * @Last Modified time: 2018-06-28 17:29:55
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ADD_TODO } from '../../actionTypes/todo.types';
+import { addTodo } from '../../actions/todo';
 
 const mapStateToProps = (state: any) => {
   return { todos: state.TodoReducer.todos };
@@ -15,8 +15,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    fnClickAddTodo: () => {
-      dispatch({ type: ADD_TODO, payload: { text: '123' } });
+    fnClickAddTodo: (payload: { text: string }) => {
+      dispatch(addTodo(payload));
     }
   };
 };
@@ -30,6 +30,7 @@ class Todos extends React.Component<any, any> {
   fnClickShowState() {
     console.log(this.props.todos);
   }
+
   render() {
     return (
       <div>
@@ -41,11 +42,14 @@ class Todos extends React.Component<any, any> {
           })}
         </ul>
         <button onClick={this.fnClickShowState}>show state</button>
-        <button onClick={this.props.fnClickAddTodo}> addTODO </button>
+        <button onClick={this.props.fnClickAddTodo.bind(this, { text: 123 })}>
+          addTODO
+        </button>
       </div>
     );
   }
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
